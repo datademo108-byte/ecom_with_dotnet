@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Authentication.Models.Product>
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<h1>Our Products</h1>
+<p class="lead">Browse our complete product catalog</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+<!-- Search and Filter Section -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="Index" method="get" class="row g-3">
+            <div class="col-md-5">
+                <input type="text" name="search" value="@ViewBag.SearchTerm"
+                       class="form-control" placeholder="Search products by name or description..." />
+            </div>
+            <div class="col-md-4">
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <option value="@category"
+                                selected="@(ViewBag.SelectedCategory == category)">
+                            @category
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-search"></i> Filter
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
+                    Clear Filters
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Controls -->
+@if (User.IsInRole("Admin"))
+{
+    <div class="mb-4">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="fas fa-plus"></i> Add New Product
+        </a>
+    </div>
+}
+
+<!-- Products Grid -->
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No products found. @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create">Add your first product</a>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 product-card">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" class="card-img-top"
+                             alt="@product.Name" style="height: 250px; object-fit: cover;">
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                             style="height: 250px;">
+                            <i class="fas fa-image fa-3x text-muted"></i>
+                        </div>
+                    }
+
+                    <div class="card-body d-flex flex-column">
+                        <div class="mb-2">
+                            <span class="badge bg-info">@product.Category</span>
+                            @if (product.StockQuantity <= 0)
+                            {
+                                <span class="badge bg-danger ml-1">Out of Stock</span>
+                            }
+                        </div>
+
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text flex-grow-1">@product.Description</p>
+
+                        <div class="mt-auto">
+                            <h4 class="text-primary">$@product.Price.ToString("F2")</h4>
+
+                            <div class="d-flex justify-content-between mt-3">
+                                <a asp-controller="Product"
+                                   asp-action="Details"
+                                   asp-route-id="@product.Id"
+                                   class="btn btn-primary">
+                                    View Details
+                                </a>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div>
+                                        <a asp-action="Edit" asp-route-id="@product.Id"
+                                           class="btn btn-outline-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@product.Id"
+                                           class="btn btn-outline-danger ml-1">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            Added: @product.CreatedAt.ToString("MMM dd, yyyy")
+                        </small>
+                        @if (product.StockQuantity > 0)
+                        {
+                            <small class="float-right">
+                                <i class="fas fa-box"></i> @product.StockQuantity in stock
+                            </small>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

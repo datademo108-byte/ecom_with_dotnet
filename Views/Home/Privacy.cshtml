@@ -1,0 +1,574 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<style>
+    :root {
+        --primary-color: #512bd4;
+        --secondary-color: #6c757d;
+        --accent-color: #0d6efd;
+        --light-bg: #f8f9fa;
+        --dark-bg: #212529;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition-speed: 0.3s;
+    }
+
+    .privacy-hero {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        color: white;
+        border-radius: 0 0 2rem 2rem;
+        box-shadow: 0 10px 30px rgba(81, 43, 212, 0.2);
+        margin-bottom: 3rem;
+        padding: 4rem 1rem;
+    }
+
+        .privacy-hero h1 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            font-size: 3.5rem;
+        }
+
+        .privacy-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+    .privacy-content {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: var(--card-shadow);
+        padding: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .privacy-section {
+        margin-bottom: 2.5rem;
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+        .privacy-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .privacy-section h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+            .privacy-section h2:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0.5rem;
+                width: 8px;
+                height: 24px;
+                background: var(--primary-color);
+                border-radius: 4px;
+            }
+
+        .privacy-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+    .privacy-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .privacy-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #eaeaea;
+            display: flex;
+            align-items: flex-start;
+        }
+
+            .privacy-list li:last-child {
+                border-bottom: none;
+            }
+
+        .privacy-list i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+    .privacy-card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: var(--card-shadow);
+        transition: transform var(--transition-speed);
+        height: 100%;
+    }
+
+        .privacy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .privacy-card .card-header {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 1rem 1rem 0 0 !important;
+            border: none;
+            padding: 1.5rem;
+            font-weight: 600;
+        }
+
+        .privacy-card .card-body {
+            padding: 1.5rem;
+        }
+
+    .badge-privacy {
+        background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 0.875rem;
+    }
+
+    .update-info {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        border-left: 5px solid var(--primary-color);
+    }
+
+        .update-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+    .contact-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: var(--card-shadow);
+        border-top: 5px solid var(--primary-color);
+    }
+
+        .contact-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+    .btn-contact {
+        background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+        border: none;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all var(--transition-speed);
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(81, 43, 212, 0.3);
+            color: white;
+        }
+
+    .privacy-timeline {
+        position: relative;
+        padding-left: 2rem;
+    }
+
+        .privacy-timeline:before {
+            content: '';
+            position: absolute;
+            left: 0.7rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-color);
+        }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: white;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+        }
+
+    .timeline-date {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-content {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    @@media (max-width: 768px) {
+        .privacy-hero {
+            padding: 2.5rem 1rem;
+            border-radius: 0 0 1.5rem 1.5rem;
+        }
+
+            .privacy-hero h1 {
+                font-size: 2.5rem;
+            }
+
+        .privacy-content {
+            padding: 1.5rem;
+        }
+
+        .privacy-section h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="privacy-hero">
+    <div class="container text-center">
+        <h1>Privacy Policy</h1>
+        <p class="lead">Your privacy is important to us. This policy explains how we collect, use, disclose, and safeguard your information.</p>
+        <div class="mt-4">
+            <span class="badge-privacy me-2">Last Updated: @DateTime.Now.ToString("MMMM dd, yyyy")</span>
+            <span class="badge-privacy">Version: 2.1</span>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            <div class="privacy-content">
+                <!-- Introduction -->
+                <div class="privacy-section">
+                    <h2>Introduction</h2>
+                    <p>Welcome to our Privacy Policy. This document outlines our commitment to protecting your personal information and explains how we handle data collected through our ASP.NET Core application.</p>
+                    <p>We are dedicated to maintaining the trust and confidence of our visitors and users. Please read this policy carefully to understand our practices regarding your personal data.</p>
+                </div>
+
+                <!-- Information Collection -->
+                <div class="privacy-section">
+                    <h2>Information We Collect</h2>
+                    <p>We collect several types of information for various purposes to provide and improve our service to you:</p>
+
+                    <ul class="privacy-list">
+                        <li>
+                            <i class="fas fa-user-circle"></i>
+                            <div>
+                                <strong>Personal Data</strong>
+                                <p class="mb-0">While using our service, we may ask you to provide personally identifiable information, including but not limited to name, email address, phone number, and usage data.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <strong>Usage Data</strong>
+                                <p class="mb-0">We automatically collect information on how the service is accessed and used. This may include your computer's IP address, browser type, pages visited, time and date of visit, and other diagnostic data.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-cookie"></i>
+                            <div>
+                                <strong>Cookies and Tracking</strong>
+                                <p class="mb-0">We use cookies and similar tracking technologies to track activity on our service and hold certain information to enhance your experience.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- How We Use Information -->
+                <div class="privacy-section">
+                    <h2>How We Use Your Information</h2>
+                    <p>We use the collected data for various purposes:</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="privacy-card card">
+                                <div class="card-header">
+                                    <i class="fas fa-cogs me-2"></i> Service Operation
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">To provide and maintain our service, including monitoring usage patterns and improving functionality.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="privacy-card card">
+                                <div class="card-header">
+                                    <i class="fas fa-comments me-2"></i> Communication
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">To contact you with newsletters, marketing materials, and other information that may be of interest to you.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="privacy-card card">
+                                <div class="card-header">
+                                    <i class="fas fa-shield-alt me-2"></i> Security
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">To detect, prevent, and address technical issues and protect against fraudulent activity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="privacy-card card">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-pie me-2"></i> Analytics
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">To analyze usage trends and gather demographic information to improve our services.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Security -->
+                <div class="privacy-section">
+                    <h2>Data Security</h2>
+                    <p>The security of your data is important to us. We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    <p>However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal data, we cannot guarantee its absolute security.</p>
+                </div>
+
+                <!-- Your Rights -->
+                <div class="privacy-section">
+                    <h2>Your Data Protection Rights</h2>
+                    <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-eye text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h5>Right to Access</h5>
+                                    <p class="mb-0">You have the right to request copies of your personal data.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-edit text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h5>Right to Rectification</h5>
+                                    <p class="mb-0">You have the right to request correction of inaccurate data.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-trash-alt text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h5>Right to Erasure</h5>
+                                    <p class="mb-0">You have the right to request deletion of your personal data.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-ban text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h5>Right to Restrict Processing</h5>
+                                    <p class="mb-0">You have the right to request restriction of data processing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Policy Updates -->
+                <div class="privacy-section">
+                    <h2>Policy Updates</h2>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+
+                    <div class="update-info mt-4">
+                        <h4><i class="fas fa-history me-2"></i>Update History</h4>
+                        <div class="privacy-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">January 15, 2024</div>
+                                <div class="timeline-content">
+                                    <p class="mb-0">Added GDPR compliance section and enhanced data retention policies.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">October 30, 2023</div>
+                                <div class="timeline-content">
+                                    <p class="mb-0">Updated cookie policy and added opt-out preferences.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">May 10, 2023</div>
+                                <div class="timeline-content">
+                                    <p class="mb-0">Initial privacy policy release with basic data collection practices.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Contact Card -->
+            <div class="contact-card mb-4">
+                <h4><i class="fas fa-question-circle me-2"></i>Have Questions?</h4>
+                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <div class="mb-3">
+                    <p class="mb-1"><i class="fas fa-envelope me-2 text-primary"></i> privacy@example.com</p>
+                    <p class="mb-0"><i class="fas fa-phone me-2 text-primary"></i> +1 (555) 123-4567</p>
+                </div>
+                <a href="mailto:privacy@example.com" class="btn-contact">
+                    <i class="fas fa-paper-plane me-2"></i> Contact Privacy Team
+                </a>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="privacy-card card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-link me-2"></i> Quick Links
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none text-primary">
+                                <i class="fas fa-file-alt me-2"></i> Terms of Service
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none text-primary">
+                                <i class="fas fa-cookie me-2"></i> Cookie Policy
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none text-primary">
+                                <i class="fas fa-shield-alt me-2"></i> Data Processing Agreement
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-decoration-none text-primary">
+                                <i class="fas fa-user-shield me-2"></i> GDPR Compliance
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Download Options -->
+            <div class="privacy-card card">
+                <div class="card-header">
+                    <i class="fas fa-download me-2"></i> Download Policy
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">Download a copy of this privacy policy for your records:</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary">
+                            <i class="fas fa-file-pdf me-2"></i> PDF Version
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-file-word me-2"></i> DOC Version
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Required Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EJw0Q2ACORgGO8sH7YzdGIWWS7fOvD4qpWqWAvRxMUWB5k8qOiWdkFNjgV" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Smooth Scroll Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation to cards when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all privacy cards
+        document.querySelectorAll('.privacy-card').forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+
+<style>
+    .privacy-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+        .privacy-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    .contact-card, .update-info {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+        .contact-card.animate-in, .update-info.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>

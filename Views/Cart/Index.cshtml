@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Authentication.Models.CartItem>
+
+<h2>Your Cart</h2>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table table-bordered align-middle">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                decimal grandTotal = 0;
+            }
+
+            @foreach (var item in Model)
+            {
+                decimal total = item.Product.Price * item.Quantity;
+                grandTotal += total;
+
+                <tr>
+                    <td>
+                        <img src="@item.Product.ImageUrl"
+                             width="80"
+                             height="80"
+                             class="rounded" />
+                    </td>
+
+                    <td>@item.Product.Name</td>
+
+                    <td>₹@item.Product.Price</td>
+
+                    <td>
+                        <div class="d-flex align-items-center">
+
+                            <a asp-action="Decrease"
+                               asp-route-id="@item.Id"
+                               class="btn btn-sm btn-danger">
+                                −
+                            </a>
+
+                            <span class="mx-2">@item.Quantity</span>
+
+                            <a asp-action="Increase"
+                               asp-route-id="@item.Id"
+                               class="btn btn-sm btn-success">
+                                +
+                            </a>
+
+                        </div>
+                    </td>
+
+                    <td>₹@total</td>
+
+                    <td>
+                        <a asp-action="Remove"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger btn-sm">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="mt-3">Grand Total: ₹@grandTotal</h4>
+
+    <a asp-controller="Checkout"
+       asp-action="Index"
+       class="btn btn-success mt-2">
+        Checkout & Pay
+    </a>
+}

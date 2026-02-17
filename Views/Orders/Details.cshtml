@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Authentication.Models.OrderItem>
+
+<h2>Order Details</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            decimal grandTotal = 0;
+        }
+
+        @foreach (var item in Model)
+        {
+            decimal total = item.Price * item.Quantity;
+            grandTotal += total;
+
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>
+                    <img src="@item.Product.ImageUrl"
+                         width="80"
+                         height="80" />
+                </td>
+                <td>₹@item.Price</td>
+                <td>@item.Quantity</td>
+                <td>₹@total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Total: ₹@grandTotal</h4>

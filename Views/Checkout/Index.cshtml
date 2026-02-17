@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Authentication.Models.CartItem>
+
+<h2>Checkout</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            decimal grandTotal = 0;
+        }
+
+        @foreach (var item in Model)
+        {
+            decimal total = item.Product.Price * item.Quantity;
+            grandTotal += total;
+
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>@total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Total Amount: ₹@grandTotal</h4>
+
+<button id="payBtn" class="btn btn-success">
+    Pay Now
+</button>
+
+<form id="paymentForm" method="post" asp-action="PaymentSuccess">
+    <input type="hidden" name="paymentId" id="paymentId" />
+</form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    var options = {
+        "key": "rzp_test_qwUWbYhsbam1oJ",
+        "amount": "@(grandTotal * 100)",
+        "currency": "INR",
+        "name": "Your Store",
+        "description": "Order Payment",
+        "handler": function (response) {
+            document.getElementById("paymentId").value = response.razorpay_payment_id;
+            document.getElementById("paymentForm").submit();
+        }
+    };
+
+    var rzp = new Razorpay(options);
+
+    document.getElementById("payBtn").onclick = function (e) {
+        rzp.open();
+        e.preventDefault();
+    };
+</script>

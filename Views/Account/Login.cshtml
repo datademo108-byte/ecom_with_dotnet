@@ -1,0 +1,62 @@
+﻿@model Authentication.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container login-container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card login-card">
+                <div class="login-header">
+                    <h3>Welcome Back</h3>
+                    <p class="mb-0 mt-2">Sign in to continue</p>
+                </div>
+                <div class="card-body login-body">
+                    <form asp-action="Login" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-4">
+                            <label asp-for="Username" class="form-label">Username</label>
+                            <input asp-for="Username" class="form-control form-control-lg" placeholder="Enter your username" />
+                            <span asp-validation-for="Username" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Password" class="form-label">Password</label>
+                            <input asp-for="Password" class="form-control form-control-lg" type="password" placeholder="Enter your password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-login btn-lg">Login</button>
+                        </div>
+
+                        <div class="register-link">
+                            <p class="mb-0">Don't have an account? <a asp-action="Register">Create one now</a></p>
+                        </div>
+                    </form>
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert @(ViewBag.Message.Contains("Invalid") ? "alert-danger" : "alert-success") mt-4">
+                            @ViewBag.Message
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

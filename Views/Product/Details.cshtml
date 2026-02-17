@@ -1,0 +1,43 @@
+﻿@model Authentication.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl"
+                 class="img-fluid rounded"
+                 alt="@Model.Name" />
+        </div>
+
+        <div class="col-md-6">
+            <h2>@Model.Name</h2>
+            <p class="text-muted">@Model.Category</p>
+
+            <h4 class="text-success">$@Model.Price</h4>
+
+            <p>@Model.Description</p>
+
+            @if (Model.StockQuantity > 0)
+            {
+                <span class="badge bg-success">In Stock</span>
+            }
+            else
+            {
+                <span class="badge bg-danger">Out of Stock</span>
+            }
+
+            <div class="mt-4">
+                <a asp-controller="Cart"
+                   asp-action="AddToCart"
+                   asp-route-productId="@Model.Id"
+                   class="btn btn-primary mt-3">
+                    🛒 Add to Cart
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
